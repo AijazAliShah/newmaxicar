@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
 import { Platform, StyleSheet, Text, View, Image, Linking } from 'react-native';
 import firebase from 'firebase';
-import {createStackNavigator, createAppContainer, createBottomTabNavigator,} from 'react-navigation';
+import {createAppContainer, createBottomTabNavigator,} from 'react-navigation';
+
+import { createStackNavigator } from 'react-navigation-stack';
 
 import { Header, Button, Card, CardSection } from './components/common';
 import LoginForm from './components/LoginForm'
