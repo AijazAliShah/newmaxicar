@@ -172,16 +172,37 @@
 import React, {Component} from 'react';
 import { RNCamera } from 'react-native-camera';
 import {View, Image, StyleSheet, Dimensions} from 'react-native'
+//redux
+import { bindActionCreators } from "redux";
+import { ownerAsync } from "../store/actions";
+import { getOwnersDataAsync } from "../store/actions";
+import { getPoliceDataAsync } from "../store/actions";
+import { invoiceAsync } from "../store/actions";
+import { vehicleAsync } from "../store/actions";
+import { connect } from "react-redux";
 
 class QRScanner extends Component {
 
+  static navigationOptions = {
+    header: null
+  }
+
+  constructor() {
+    super();
+    this.state = {
+      QR_Code_Value: '',
+      Start_Scanner: false,
+      loading: false,
+      result: ''
+    };
+  } 
   barcodeRecognized = (data) => {
     console.log("in function", data.data)
-    res = data.data.split("-");
+    var res = data.data.split("-");
     this.props.ownerAsync(res[0]);
      this.props.vehicleAsync(res[1]);
      this.props.invoiceAsync(res[0]);
-    //  this.props.navigation.navigate('MainScreen', { qrCodeValue: this.state.QR_Code_Value })
+     this.props.navigation.navigate('MainScreen', { qrCodeValue: this.state.QR_Code_Value })
   };
 
   render() {
@@ -249,4 +270,23 @@ const styles = StyleSheet.create({
   maskCenter: { flexDirection: 'row' },
 });
 
-export default QRScanner;
+const mapStateToProps = state => ({
+  owner: state.owner.ownerEntity,
+  owners: state.ownersData.ownersEntities
+});
+const mapDispatchToProps = (dispatch, ownProps) =>
+  bindActionCreators(
+    {
+      ownerAsync,
+      getOwnersDataAsync,
+      getPoliceDataAsync,
+      vehicleAsync,
+      invoiceAsync
+    },
+    dispatch
+  );
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(QRScanner);
