@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Avatar } from 'react-native-paper';
-import { StyleSheet, View, Text, Platform, TouchableOpacity, Linking, ScrollView } from 'react-native';
+import { StyleSheet, View, Text, Platform, Button, TouchableOpacity, Linking, ScrollView } from 'react-native';
 import { Image } from 'react-native-elements';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import Icon1 from 'react-native-vector-icons/AntDesign';
@@ -38,18 +38,30 @@ class Vehicle extends Component {
 
         this.state = {
             // pdf: ""
+            show: false
         };
         this.pdf = null;
 
     }
 
-
+    componentWillMount(){
+        this.setState({show: false});
+        source='';
+    }
+    
+    componentWillUnmount(){
+        this.setState({show: false});
+        source='';
+    }
      componentDidMount() {
 
-    source = {uri:'https://mexicar.appspot.com/getpdf/SCAN-DOC-5d23c1ad303c4c128836f7de.pdf',cache:true};
-    //     this.setState({pdf: source});
+        // source = {uri:'https://mexicar.appspot.com/getpdf/SCAN-DOC-5d23c1ad303c4c128836f7de.pdf',cache:true};
+        //     this.setState({pdf: source});
     }
-
+    handlePress (){
+        this.setState({show: !this.state.show})
+        source = {uri:'http://samples.leanpub.com/thereactnativebook-sample.pdf',cache:false};
+    }
 
 
     render() {
@@ -61,6 +73,12 @@ class Vehicle extends Component {
 
             <View style={styles.container}>
                 <Text style={styles.textStyle}>Scanned Documents</Text>
+                <Button
+                    onPress = {this.handlePress.bind(this)}
+                    title = {this.state.show ? "Hide!" : "Show!"}
+                    color = "blue"
+                />
+                {this.state.show ? (
                 <Pdf
                     ref={(pdf)=>{this.pdf = pdf}}
                     source={source}
@@ -74,6 +92,7 @@ class Vehicle extends Component {
                         console.log(error);
                     }}
                     style={styles.pdf}/>
+                    ): null}
             </View>
         //     <View style={{ flex: 1 }}>
         //     {/* Some Controls to change PDF resource */}
