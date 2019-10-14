@@ -5,11 +5,11 @@ import { StyleSheet, Dimensions, Text, Platform, Button, TouchableOpacity, Linki
 
 export default class PdfScreen extends Component {
     static navigationOptions = {
-      title: 'PDF'
+      title: 'Scanned Documents'
     };
   
     render() {
-        let source = {uri:'http://samples.leanpub.com/thereactnativebook-sample.pdf', cache:true};
+        let source = {uri:'https://mexicar.appspot.com/getpdf/SCAN-DOC-5d23c1ad303c4c128836f7de.pdf', cache:true};
   
       return <Pdf
                 source={source}
