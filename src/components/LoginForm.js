@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import firebase from 'firebase';
+import firebase from '../firebase';
 import { TextInput, View, Text, TouchableOpacity, Image } from 'react-native';
 import { Card, CardSection, Button, Input, Spinner } from './common';
 
@@ -16,15 +16,15 @@ export default class LoginForm extends Component {
     }
 
     componentWillMount() {
-        firebase.initializeApp({
-            apiKey: "AIzaSyDYg6dhnjGXu0fn5DZ8PPE16C99eiBmLqc",
-            authDomain: "rnauthapp-e84d1.firebaseapp.com",
-            databaseURL: "https://rnauthapp-e84d1.firebaseio.com",
-            projectId: "rnauthapp-e84d1",
-            storageBucket: "rnauthapp-e84d1.appspot.com",
-            messagingSenderId: "685951200040",
-            appId: "1:685951200040:web:bef2d64dd3509ab5"
-        })
+        // firebase.initializeApp({
+        //     apiKey: "AIzaSyDYg6dhnjGXu0fn5DZ8PPE16C99eiBmLqc",
+        //     authDomain: "rnauthapp-e84d1.firebaseapp.com",
+        //     databaseURL: "https://rnauthapp-e84d1.firebaseio.com",
+        //     projectId: "rnauthapp-e84d1",
+        //     storageBucket: "rnauthapp-e84d1.appspot.com",
+        //     messagingSenderId: "685951200040",
+        //     appId: "1:685951200040:web:bef2d64dd3509ab5"
+        // })
 
         firebase.auth().onAuthStateChanged((user) => {
           if (user) {

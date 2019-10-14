@@ -89,13 +89,19 @@ class Owner extends Component {
                     {'Scanned QR Code: ' + this.props.qrCodeValue}
                 </Text> */}
                 {/* <Text>ids: {this.props.ids}</Text>    //require('../images/avatar.jpg' */}
+
                 {this.props.owner.data ? (
 
                     <ScrollView >
                         
-                        <View style={{ marginTop: 20 }}>
-                        <Image source={{ uri: this.props.owner.data.picture }} style={{width: 120, height: 120, borderRadius:20, alignSelf: 'center'}} />
-                            <Text style={{ fontSize: 18, alignSelf: "center", fontFamily: font, fontSize: 18  }}>{this.props.owner.data.name.toUpperCase()}</Text>
+                        <View style={{ marginTop: 20, }}>
+                            <View style={{
+                                justifyContent: 'center',
+                                alignItems: 'center',
+                            }}>
+                            <Image source={{ uri: this.props.owner.data.picture }} style={{ width: 120, height: 120, }} />
+                            </View>
+                            <Text style={{ fontSize: 18, alignSelf: "center", fontFamily: font, fontSize: 18 }}>{this.props.owner.data.name.toUpperCase()}</Text>
                         </View>
                         <View style={{ flexDirection: 'column', justifyContent: 'center' }}>
                             <ListItem

@@ -17,14 +17,15 @@ import axios from 'axios';
 import Pdf from 'react-native-pdf';
 import { Buffer } from 'buffer'
 import {Dimensions} from 'react-native';
+import PDFView from 'react-native-view-pdf';
 
 // var Buffer = require('buffer').Buffer
-
-// const resources = {
-//     file: Platform.OS === 'ios' ? 'downloadedDocument.pdf' : '/sdcard/Download/downloadedDocument.pdf',
-//     url: 'http://localhost:5000/getpdf/SCAN-DOC-5d23c505f4b6aa0178289339.pdf',
-//     base64: 'JVBERi0xLjMKJcfs...',
-//   };
+let source='';
+const resources = {
+    file: Platform.OS === 'ios' ? 'downloadedDocument.pdf' : '/sdcard/Download/downloadedDocument.pdf',
+    url: 'https://www.ets.org/Media/Tests/TOEFL/pdf/SampleQuestions.pdf',
+    base64: 'JVBERi0xLjMKJcfs...',
+  };
 
 class Vehicle extends Component {
     static navigationOptions = {
@@ -36,53 +37,24 @@ class Vehicle extends Component {
         super();
 
         this.state = {
-            pdf: ""
+            // pdf: ""
         };
+        this.pdf = null;
+
     }
 
 
-     componentWillMount() {
+     componentDidMount() {
 
-
-        // axios
-        // .get('http://192.168.0.102:3000/api/owners/getownersdata')
-        // .then((ownersData) => {
-        //     console.log("owwwwwwwwwwww")
-        //     console.log(ownersData)
-        // }).catch((error) => {
-        //   console.log("mongodb get owners data error")
-        // })
-
-        // axios
-        // .get('http://192.168.0.102:5000/api/owners/getownersdata')
-        // .then((ownersData) => {
-        //     console.log("owwwwwwwwwwww")
-        //     console.log(ownersData)
-        // }).catch((error) => {
-        //   console.log("mongodb get owners data error")
-        // })
-        // const source = {uri:'http://192.168.0.102:5000/getpdf/SCAN-DOC-5d23c1ad303c4c128836f7de.pdf',cache:true};
-        // this.setState({pdf: source});
-
-        // var self = this;
-        //  axios.get('http://localhost:5000/getpdf/SCAN-DOC-5d23c505f4b6aa0178289339.pdf',{responseType: 'arraybuffer'})
-        //     .then((response) => {
-        //         // alert("The file is successfully uploaded");
-        //         console.log("file show")
-        //         var img = new Buffer(response.data, 'binary').toString('base64')
-        //         console.log(img);
-        //     }).catch((error) => {
-        //         console.log("heloo error")
-        //         console.log(error)
-        //     });
+    source = {uri:'https://mexicar.appspot.com/getpdf/SCAN-DOC-5d23c1ad303c4c128836f7de.pdf',cache:true};
+    //     this.setState({pdf: source});
     }
 
 
 
     render() {
-        // const source = require('http://localhost:5000/getpdf/SCAN-DOC-5d23c505f4b6aa0178289339.pdf');
-        const resourceType = 'base64';
-        const source = {uri:'http://192.168.0.102:5000/getpdf/SCAN-DOC-5d23c1ad303c4c128836f7de.pdf',cache:true};
+        // const resourceType = 'base64';
+        // let source = {uri:'http://samples.leanpub.com/thereactnativebook-sample.pdf',cache:false};
         // this.setState({pdf: source});
 
         return (
@@ -90,6 +62,7 @@ class Vehicle extends Component {
             <View style={styles.container}>
                 <Text style={styles.textStyle}>Scanned Documents</Text>
                 <Pdf
+                    ref={(pdf)=>{this.pdf = pdf}}
                     source={source}
                     onLoadComplete={(numberOfPages,filePath)=>{
                         console.log(`number of pages: ${numberOfPages}`);
@@ -102,7 +75,17 @@ class Vehicle extends Component {
                     }}
                     style={styles.pdf}/>
             </View>
-
+        //     <View style={{ flex: 1 }}>
+        //     {/* Some Controls to change PDF resource */}
+        //     <PDFView
+        //       fadeInDuration={250.0}
+        //       style={{ flex: 1 }}
+        //       resource={resources[resourceType]}
+        //       resourceType={resourceType}
+        //       onLoad={() => console.log(`PDF rendered from ${resourceType}`)}
+        //       onError={(error) => console.log('Cannot render PDF', error)}
+        //     />
+        //   </View>
 
         //     <View style={{ flex: 1 }}>
         //     {/* Some Controls to change PDF resource */}

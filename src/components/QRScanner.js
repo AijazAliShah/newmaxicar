@@ -201,7 +201,7 @@ class QRScanner extends Component {
     var res = data.data.split("-");
     this.props.ownerAsync(res[0]);
      this.props.vehicleAsync(res[1]);
-     this.props.invoiceAsync(res[0]);
+     this.props.invoiceAsync(res[2]);
      this.props.navigation.navigate('MainScreen', { qrCodeValue: this.state.QR_Code_Value })
   };
 
