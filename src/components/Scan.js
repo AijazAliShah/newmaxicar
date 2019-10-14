@@ -48,7 +48,7 @@ class Vehicle extends Component {
         this.setState({show: false});
         source='';
     }
-    
+
     componentWillUnmount(){
         this.setState({show: false});
         source='';
@@ -68,32 +68,38 @@ class Vehicle extends Component {
         // const resourceType = 'base64';
         // let source = {uri:'http://samples.leanpub.com/thereactnativebook-sample.pdf',cache:false};
         // this.setState({pdf: source});
+        const { navigate } = this.props.navigation;
 
         return (
-
             <View style={styles.container}>
-                <Text style={styles.textStyle}>Scanned Documents</Text>
-                <Button
-                    onPress = {this.handlePress.bind(this)}
-                    title = {this.state.show ? "Hide!" : "Show!"}
-                    color = "blue"
-                />
-                {this.state.show ? (
-                <Pdf
-                    ref={(pdf)=>{this.pdf = pdf}}
-                    source={source}
-                    onLoadComplete={(numberOfPages,filePath)=>{
-                        console.log(`number of pages: ${numberOfPages}`);
-                    }}
-                    onPageChanged={(page,numberOfPages)=>{
-                        console.log(`current page: ${page}`);
-                    }}
-                    onError={(error)=>{
-                        console.log(error);
-                    }}
-                    style={styles.pdf}/>
-                    ): null}
-            </View>
+                    <Button
+                    onPress={() => navigate('Pdf')}
+                    title='Open PDF'
+            />
+                </View>
+            // <View style={styles.container}>
+            //     <Text style={styles.textStyle}>Scanned Documents</Text>
+            //     <Button
+            //         onPress = {this.handlePress.bind(this)}
+            //         title = {this.state.show ? "Hide!" : "Show!"}
+            //         color = "blue"
+            //     />
+            //     {this.state.show ? (
+            //     <Pdf
+            //         ref={(pdf)=>{this.pdf = pdf}}
+            //         source={source}
+            //         onLoadComplete={(numberOfPages,filePath)=>{
+            //             console.log(`number of pages: ${numberOfPages}`);
+            //         }}
+            //         onPageChanged={(page,numberOfPages)=>{
+            //             console.log(`current page: ${page}`);
+            //         }}
+            //         onError={(error)=>{
+            //             console.log(error);
+            //         }}
+            //         style={styles.pdf}/>
+            //         ): null}
+            // </View>
         //     <View style={{ flex: 1 }}>
         //     {/* Some Controls to change PDF resource */}
         //     <PDFView

@@ -14,6 +14,7 @@ import BottomNavigator from './components/BottomNavigator'
 import Settings from './components/Settings'
 import Owner from './components/Owner'
 import RecentScanned from './components/RecentScanned'
+import Pdf from './components/pdf'
 
 const MainNavigator = createStackNavigator({
   Login: LoginForm,
@@ -24,7 +25,8 @@ const MainNavigator = createStackNavigator({
   BottomNavigator: BottomNavigator,
   Settings: Settings,
   Owner: Owner,
-  RecentScanned: RecentScanned
+  RecentScanned: RecentScanned,
+  Pdf: Pdf
 });
 
  const AppContainer = createAppContainer(MainNavigator);
