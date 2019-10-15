@@ -10,6 +10,7 @@ import HomeSc from './HomeScreen';
 import Invoice from './Invoice';
 import Recent from './RecentScanned';
 import Scan from './Scan';
+import stackNav from './stacknav';
 
 //redux
 import { bindActionCreators } from "redux";
@@ -19,8 +20,19 @@ import { getPoliceDataAsync } from "../store/actions";
 import { invoiceAsync } from "../store/actions";
 import { vehicleAsync } from "../store/actions";
 import { connect } from "react-redux";
-
+import { DrawerNavigator } from 'react-navigation';
 var res = [];
+
+
+// const Drawernav = DrawerNavigator({
+//   Item1: {
+//       screen: stackNav,
+//     }
+//   }, {
+//     // contentComponent: SideMenu,
+//     drawerWidth: Dimensions.get('window').width - 120,  
+// });
+
 
 class MainScreen extends Component {
   static navigationOptions = {
@@ -79,62 +91,24 @@ class MainScreen extends Component {
     console.log("anssssssssssssssssssssssssssssssssssssss33333344444444444443")
     res = QRValue.split("-");
     console.log(res)
-
-    // await this.props.ownerAsync("5d370034e76dc005301a430e");
-    // await this.props.vehicleAsync("5d37007ee76dc005301a430f");
-    // await this.props.invoiceAsync("5d370034e76dc005301a430e");
-    //  await this.props.ownerAsync('5d370034e76dc005301a430e');
     await this.props.getPoliceDataAsync();
     const source = {uri:'http://192.168.0.102:5000/getpdf/SCAN-DOC-5d23c1ad303c4c128836f7de.pdf',cache:true};
     this.setState({pdf: source});
-    //  this.setState({ids: })
-        // this.props.getOwnersDataAsync();
   }
 
-  // async callfunc(id1, id2){
-  //   // console.log("anssssssssssssssssssssssssssssssssssssss")
-  //   // console.log("saaaaaaaaaaaaaaaaaaaaaaaa")
-  //   // console.log(this.props.navigation.getParam('qrCodeValue', 'NO-ID'))
-  //   console.log("iddddddddddddddddddddddddssssss")
-  //   // var res = this.props.navigation.getParam('qrCodeValue', 'NO-ID').split("-");
-  //   console.log(id1+ ' asd ' + id2)
-  //   await this.props.ownerAsync("5d370034e76dc005301a430e");
-  //   await this.props.vehicleAsync("5d37007ee76dc005301a430f");
-  //   await this.props.invoiceAsync("5d370034e76dc005301a430e");
-  //   this.setState({count: ++this.state.count})
- 
-  // }
+
 
   render() {
-    // const { navigation } = this.props;
-    // const QRValue = navigation.getParam('qrCodeValue', 'NO-ID');
-    // console.log("saaaaaaaaaaaaaaaaadddddddsddddddaaaaaaa")
-    // console.log(QRValue)
-    // console.log("anssssssssssssssssssssssssssssssssssssss33333344444444444443")
-    // res = QRValue.split("-");
-    // console.log(res)
-    // if(this.state.count < 6){
-    //   console.log("iddddddddddddddddddddddddssssss")
-    //   console.log(res[0]+ ' asd ' + res[1])
-    //   this.setState({count: ++this.state.count})
-    //   // this.callfunc(res[0], res[1]);
-    // }
 
     return (
       // <View>
-      //   {this.props.navigation.getParam('qrCodeValue', 'NO-ID') ? (
-      //     <View>
-      //       <Text>idss:{this.state.ids}</Text>
-      //       <Text>{this.props.navigation.getParam('qrCodeValue', 'NO-ID')}</Text>
-      //     </View>
-      //   ) : (<Text>no</Text>)
-      //   }
-      // </View>
+      //  <Drawernav />
        <BottomNavigation
           navigationState={this.state}
           onIndexChange={this._handleIndexChange}
           renderScene={this._renderScene}
         /> 
+     
     );
 
   }

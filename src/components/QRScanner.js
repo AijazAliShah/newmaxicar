@@ -171,7 +171,7 @@
 
 import React, {Component} from 'react';
 import { RNCamera } from 'react-native-camera';
-import {View, Image, StyleSheet, Dimensions} from 'react-native'
+import {View, Image, StyleSheet, Dimensions, Button} from 'react-native'
 //redux
 import { bindActionCreators } from "redux";
 import { ownerAsync } from "../store/actions";
@@ -197,12 +197,15 @@ class QRScanner extends Component {
     };
   } 
   barcodeRecognized = (data) => {
-    console.log("in function", data.data)
-    var res = data.data.split("-");
-    this.props.ownerAsync(res[0]);
-     this.props.vehicleAsync(res[1]);
-     this.props.invoiceAsync(res[2]);
-     this.props.navigation.navigate('MainScreen', { qrCodeValue: this.state.QR_Code_Value })
+    // console.log("in function", data.data)
+    // var res = data.data.split("-");
+    // this.props.ownerAsync(res[0]);
+    //  this.props.vehicleAsync(res[1]);
+    //  this.props.invoiceAsync(res[2]);
+     this.props.ownerAsync('5d375e1d3d69b106904d08dd');
+     this.props.vehicleAsync('5d375f203d69b106904d08e0');
+     this.props.invoiceAsync('5cdf092c4d840b1a38ae38b2');
+     this.props.navigation.navigate('Drawer', { qrCodeValue: this.state.QR_Code_Value })
   };
 
   render() {
@@ -212,28 +215,34 @@ class QRScanner extends Component {
 
   return (
     <View style={styles.container}>
-        <RNCamera style={styles.camera}
-          ref={ref => {
-            this.camera = ref;
-          }}
-          style={{
-            flex: 1
-          }}
-          onBarCodeRead={this.barcodeRecognized.bind(this)}
-          barCodeTypes={[RNCamera.Constants.BarCodeType.qr]}
-        >
-          <View style={styles.maskOutter}>
-            <View style={[{ flex: maskRowHeight  }, styles.maskRow, styles.maskFrame]} />
-             <View style={[{ flex: 30 }, styles.maskCenter]}>
-             <View style={[{ width: maskColWidth }, styles.maskFrame]} />
-             <View style={styles.maskInner} />
-            <View style={[{ width: maskColWidth }, styles.maskFrame]} />
-          </View>
-        <View style={[{ flex: maskRowHeight }, styles.maskRow, styles.maskFrame]} />
-      </View>
-        </RNCamera>
+        <Button
+        onPress={() => this.barcodeRecognized("hello")}
+        title='Open main screen'
+    />
+    </View>
+    // <View style={styles.container}>
+    //     <RNCamera style={styles.camera}
+    //       ref={ref => {
+    //         this.camera = ref;
+    //       }}
+    //       style={{
+    //         flex: 1
+    //       }}
+    //       onBarCodeRead={this.barcodeRecognized.bind(this)}
+    //       barCodeTypes={[RNCamera.Constants.BarCodeType.qr]}
+    //     >
+    //       <View style={styles.maskOutter}>
+    //         <View style={[{ flex: maskRowHeight  }, styles.maskRow, styles.maskFrame]} />
+    //          <View style={[{ flex: 30 }, styles.maskCenter]}>
+    //          <View style={[{ width: maskColWidth }, styles.maskFrame]} />
+    //          <View style={styles.maskInner} />
+    //         <View style={[{ width: maskColWidth }, styles.maskFrame]} />
+    //       </View>
+    //     <View style={[{ flex: maskRowHeight }, styles.maskRow, styles.maskFrame]} />
+    //   </View>
+    //     </RNCamera>
 
-        </View>
+    //     </View>
   );
 }
 };

@@ -61,6 +61,7 @@ export default class HomeScreen extends Component {
 
   onButtonClick() {
     this.open_QR_Code_Scanner();
+    
     this.props.navigation.navigate('QRScanner')
   }
 

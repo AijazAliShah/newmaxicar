@@ -15,6 +15,8 @@ import Settings from './components/Settings'
 import Owner from './components/Owner'
 import RecentScanned from './components/RecentScanned'
 import Pdf from './components/pdf'
+import Drawer from './components/Drawer'
+import stacknav from './components/stacknav'
 
 const MainNavigator = createStackNavigator({
   Login: LoginForm,
@@ -26,7 +28,9 @@ const MainNavigator = createStackNavigator({
   Settings: Settings,
   Owner: Owner,
   RecentScanned: RecentScanned,
-  Pdf: Pdf
+  Pdf: Pdf,
+  stacknav: stacknav,
+  Drawer: Drawer
 });
 
  const AppContainer = createAppContainer(MainNavigator);
